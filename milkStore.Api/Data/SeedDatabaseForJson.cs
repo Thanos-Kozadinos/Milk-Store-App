@@ -10,18 +10,18 @@ public static class SeedDatabaseForJson
         using (var context = new ApplicationDbContext(
             serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
         {
-            
-            string jsonFilePath = "D:\\DATA SCIENCE\\Software Engineering\\My github\\Milk-Store-App\\milkStore.Api";
+            string jsonFilePath = "..\\milkStore.Api\\milk.json";
             string jsonContent = File.ReadAllText(jsonFilePath);
             milkFromJson seedData = JsonConvert.DeserializeObject<milkFromJson>(jsonContent);
             
+            if (context.milkStorage.Any()) { return; }
             foreach(var item in seedData.results)
             {
                 var newEntry = new milkStorage {
-                    Name = item.Name,
-                    Type = item.Type,
-                    Storage = item.Storage,
-                    productId = item.productId
+                    Name = item.name,
+                    Type = item.type,
+                    Storage = int.Parse(item.storage),
+                    productId = item.id
                 };
                 context.milkStorage.Add(newEntry);
                 context.SaveChanges();
