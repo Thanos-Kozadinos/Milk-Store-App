@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "v6vKxaviwiaNdHEUL30hsWUfyczidTvroRqiZmCRD8c=",
+  "Source": "milkStore.Api",
+  "BasePath": "_content/milkStore.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
