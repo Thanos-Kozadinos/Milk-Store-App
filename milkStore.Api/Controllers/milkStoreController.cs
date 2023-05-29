@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using milkStore.Api.Models;
+using milkStore.Api.Data;
 
 namespace milkStore.Api.Controllers
 {

@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using milkStore.Api.Data;
-public static class SeedDataFromFile
+using milkStore.Api.Models;
+using Newtonsoft.Json;
+namespace milkStore.Api.Data;
+public static class SeedDatabaseForJson
 {
 
     public static void Initialize(IServiceProvider serviceProvider)
@@ -9,13 +11,13 @@ public static class SeedDataFromFile
             serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
         {
             
-            string jsonFilePath = "Milk-Store-App/milkStore.Api/milk.json";
+            string jsonFilePath = "D:\\DATA SCIENCE\\Software Engineering\\My github\\Milk-Store-App\\milkStore.Api";
             string jsonContent = File.ReadAllText(jsonFilePath);
             milkFromJson seedData = JsonConvert.DeserializeObject<milkFromJson>(jsonContent);
             
             foreach(var item in seedData.results)
             {
-                var newEntry = new milkStore {
+                var newEntry = new milkStorage {
                     Name = item.Name,
                     Type = item.Type,
                     Storage = item.Storage,
