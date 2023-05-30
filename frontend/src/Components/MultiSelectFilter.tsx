@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import '../css/MultiSelectFilter.css'
 
 type MultiSelectFilterProps = {
     options: string[];
@@ -32,9 +33,11 @@ export const MultiSelectFilter = ({options, isOpen, onRequestClose, onFilterChan
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="MultiSelect Filter Modal"
+      className="custom-modal"
+      overlayClassName="custom-modal-overlay"
     >
     <h3>Filter</h3>
-    <div>
+    <div className='filterModal'>
       <label>
         <input
           type="checkbox"

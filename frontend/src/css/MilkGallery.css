@@ -5,3 +5,10 @@
     gap: 60px;
     background-color: #ffe3e2;
 }
+
+.searchAndfilters {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;;
+
+}

@@ -4,6 +4,9 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { getMilks, milks } from './Services/api'
 import { MilkGallery } from './Components/MilkGallery'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Header } from './Components/Header'
+import { MilkDetails } from './Components/MilkDetails'
 
 export const App = () => {
   const [data, setData] = useState<milks[]>([]);
@@ -16,7 +19,7 @@ export const App = () => {
   useEffect(() => {
     getData();
   }, []); 
-  // console.log(data)
+
 
   if(data.length == 0) {
     return
@@ -26,9 +29,13 @@ export const App = () => {
   } 
   else {
     return (
-      <>
-        <MilkGallery data={data}/>
-      </>
+      <Router>
+        <Header/>
+        <Routes>
+          <Route path="/" element={<MilkGallery data={data}/>}/>
+          <Route path="/milk/:id" element={<MilkDetails data={data}/>} />
+        </Routes>   
+      </Router>
     )
   }
 } 

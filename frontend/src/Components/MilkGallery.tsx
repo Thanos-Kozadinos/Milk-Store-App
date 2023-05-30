@@ -4,6 +4,7 @@ import '../css/MilkGallery.css'
 import { useEffect, useState } from "react"
 import { MultiSelectFilter } from "./MultiSelectFilter"
 import { SearchByName } from "./SearchByName"
+import { Link } from "react-router-dom"
 
 type MilkGalleryProps = {
     data: milks[]
@@ -30,14 +31,21 @@ export const MilkGallery = ({data}:MilkGalleryProps) => {
         setNames(filteredNames);
       };
 
-    const milkCarton = data.filter(milk => selectedFilters.includes(milk.type)).filter(ilk => names.includes(ilk.name)).map(mlk => <CardMilk data={mlk}/> )
+    // const milkCarton = data.filter(milk => selectedFilters.includes(milk.type)).filter(ilk => names.includes(ilk.name)).map(mlk => <CardMilk data={mlk}/> )
+
+    const milkCarton = data.filter(milk => selectedFilters.includes(milk.type)).filter(ilk => names.includes(ilk.name)).map(mlk =>
+    <Link key={mlk.id} to={`/milk/${mlk.id}`}> 
+        <CardMilk data={mlk}/> 
+    </Link>)
 
     console.log(names)
     return (
         <>
-        <SearchByName names={names} onSearch={handleSearch} uNames={uniqueNames} />
-        <button onClick={openModal}>Open Filter Modal</button>
-        <MultiSelectFilter options={uniqueTypes} isOpen={isModalOpen} onRequestClose={closeModal} onFilterChange={handleFilterChange} />
+        <div className="searchAndfilters">
+            <SearchByName names={names} onSearch={handleSearch} uNames={uniqueNames}/>
+            <button onClick={openModal}>Filter</button>
+            <MultiSelectFilter options={uniqueTypes} isOpen={isModalOpen} onRequestClose={closeModal} onFilterChange={handleFilterChange} />
+        </div>
 
         <div className="gallery">
             {milkCarton}
